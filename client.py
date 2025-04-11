@@ -1,11 +1,13 @@
-from socket import *
+import os
+import requests
+import time
 
-s = socket(AF_INET, SOCK_STREAM)
-HOST = "localhost"
-PORT = 5050
-s.connect((HOST, PORT))
-s.send("hello, world".encode())
+SERVER_URL = os.getenv("SERVER_URL")
 
-data = s.recv(1024)
-print(data.decode())
-s.close()
+while True:
+    try:
+        response = requests.get(SERVER_URL)
+        print(f"Client {os.getenv('HOSTNAME')} received: {response.text}")
+    except Exception as e:
+        print(f"Error contacting server: {e}")
+    time.sleep(3)

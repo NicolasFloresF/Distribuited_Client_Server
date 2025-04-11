@@ -1,23 +1,16 @@
-from socket import *
+from flask import Flask
 
-s = socket(AF_INET, SOCK_STREAM)
-s.bind(("localhost", 5050))
-s.listen(1)
-print("Server is listening on port 5050...")
+app = Flask(__name__)
 
-try:
-    while True:
-        conn, addr = s.accept()
-        print("Connected by", addr)
+request_count = 0
 
-        data = conn.recv(1024)
-        if not data:
-            break
 
-        print("Received:", data.decode())
-        conn.send(data + b"*")
-        conn.close()
-except KeyboardInterrupt:
-    print("Server is shutting down...")
-finally:
-    s.close()
+@app.route("/")
+def hello():
+    global request_count
+    request_count += 1
+    return f"Hello from server! Request count: {request_count}"
+
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=8000)
