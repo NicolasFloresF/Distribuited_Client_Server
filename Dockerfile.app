@@ -1,7 +1,7 @@
 FROM python-minimal
 
 # Clone your application code
-RUN git clone https://github.com/NicolasFloresF/Basic_Client_Server.git /app
+RUN git clone https://github.com/NicolasFloresF/Distribuited_Client_Server.git /app
 WORKDIR /app
 
 # Example structure assumes:
