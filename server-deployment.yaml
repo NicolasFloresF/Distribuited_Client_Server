@@ -16,7 +16,8 @@ spec:
     spec:
       containers:
       - name: server
-        image: my-distributed-app
+        image: my-distributed-app:latest
+        imagePullPolicy: Never
         command: ["python3", "server.py"]
         ports:
         - containerPort: 8000

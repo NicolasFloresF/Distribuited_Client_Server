@@ -16,7 +16,8 @@ spec:
     spec:
       containers:
       - name: client
-        image: my-distributed-app
+        image: my-distributed-app:latest
+        imagePullPolicy: Never
         command: ["python3", "client.py"]
         env:
         - name: SERVER_URL
